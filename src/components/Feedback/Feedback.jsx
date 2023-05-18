@@ -36,6 +36,20 @@ class Feedback extends Component {
     }
   };
 
+  countTotalFeedback = (good, neutral, bad) => {
+    const totalFeedbackCounter = good + neutral + bad;
+    return totalFeedbackCounter;
+  };
+
+  countPositiveFeedbackPercentage = (good, neutral, bad) => {
+    const totalPositiveFeedbackPercentageCounter =
+      (100 * good) / (good + neutral + bad);
+    if (totalPositiveFeedbackPercentageCounter) {
+      return Math.round(totalPositiveFeedbackPercentageCounter);
+    }
+    return 0;
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
 
@@ -70,7 +84,7 @@ class Feedback extends Component {
             </button>
           </div>
         </div>
-        {good || neutral || bad ? (
+        {(good || neutral || bad) !== 0 && (
           <div className={css.statisticDiv}>
             <h2 className={css.statisticTitle}>Statistics</h2>
             <p className={css.statisticParagraph}>
@@ -83,9 +97,16 @@ class Feedback extends Component {
             <p className={css.statisticParagraph}>
               Bad: <span>{bad}</span>
             </p>
+            <p className={css.statisticParagraph}>
+              Total: <span>{this.countTotalFeedback(good, neutral, bad)}</span>
+            </p>
+            <p className={css.statisticParagraph}>
+              Positive feedback:{' '}
+              <span>
+                {this.countPositiveFeedbackPercentage(good, neutral, bad)}%
+              </span>
+            </p>
           </div>
-        ) : (
-          <></>
         )}
       </>
     );
