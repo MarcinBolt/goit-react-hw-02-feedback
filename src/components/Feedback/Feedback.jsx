@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import css from './Feedback.module.css';
 
@@ -9,7 +10,12 @@ class Feedback extends Component {
     step: 1,
   };
 
-  static propTypes = {};
+  static propTypes = {
+    initialGood: PropTypes.number,
+    initialNeutral: PropTypes.number,
+    initialBad: PropTypes.number,
+    step: PropTypes.number,
+  };
 
   state = {
     good: this.props.initialGood,
