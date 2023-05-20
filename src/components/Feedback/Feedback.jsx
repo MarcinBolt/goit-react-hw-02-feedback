@@ -1,41 +1,36 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import css from './Feedback.module.css';
+// import Statistics from '../Statistics/Statistics';
 
 class Feedback extends Component {
-  static defaultProps = {
-    initialGood: 0,
-    initialNeutral: 0,
-    initialBad: 0,
-    step: 1,
-  };
-
   static propTypes = {
-    initialGood: PropTypes.number,
-    initialNeutral: PropTypes.number,
-    initialBad: PropTypes.number,
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
     step: PropTypes.number,
   };
 
   state = {
-    good: this.props.initialGood,
-    neutral: this.props.initialNeutral,
-    bad: this.props.initialBad,
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
   };
 
   feedbackButtonHandle = e => {
-    let buttonAttributeTarget = e.target.getAttribute('datatype');
-    if (buttonAttributeTarget === 'buttonGood') {
+    // let buttonValueTarget = e.target.value;
+    // console.log(buttonValueTarget);
+    if (e.target.textContent === 'Good') {
       return this.setState((state, props) => ({
         good: state.good + props.step,
       }));
     }
-    if (buttonAttributeTarget === 'buttonNeutral') {
+    if (e.target.textContent === 'Neutral') {
       return this.setState((state, props) => ({
         neutral: state.neutral + props.step,
       }));
     }
-    if (buttonAttributeTarget === 'buttonBad') {
+    if (e.target.textContent === 'Bad') {
       return this.setState((state, props) => ({
         bad: state.bad + props.step,
       }));
@@ -58,7 +53,7 @@ class Feedback extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-
+    
     return (
       <>
         <div className={css.feedbackDiv}>
@@ -66,7 +61,7 @@ class Feedback extends Component {
           <div className={css.buttonsDiv}>
             <button
               type="button"
-              datatype="buttonGood"
+              value="good"
               className={css.feedbackButton}
               onClick={this.feedbackButtonHandle}
             >
@@ -74,7 +69,7 @@ class Feedback extends Component {
             </button>
             <button
               type="button"
-              datatype="buttonNeutral"
+              value="neutral"
               className={css.feedbackButton}
               onClick={this.feedbackButtonHandle}
             >
@@ -82,7 +77,7 @@ class Feedback extends Component {
             </button>
             <button
               type="button"
-              datatype="buttonBad"
+              value="bad"
               className={css.feedbackButton}
               onClick={this.feedbackButtonHandle}
             >
@@ -91,7 +86,7 @@ class Feedback extends Component {
           </div>
         </div>
         {(good || neutral || bad) !== 0 && (
-          <div className={css.statisticDiv}>
+          <section className={css.statisticDiv}>
             <h2 className={css.statisticTitle}>Statistics</h2>
             <p className={css.statisticParagraph}>
               Good:
@@ -112,8 +107,20 @@ class Feedback extends Component {
                 {this.countPositiveFeedbackPercentage(good, neutral, bad)}%
               </span>
             </p>
-          </div>
+          </section>
         )}
+
+        {/* <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={this.countTotalFeedback(good, neutral, bad)}
+          positivePercentage={this.countPositiveFeedbackPercentage(
+            good,
+            neutral,
+            bad
+          )}
+        ></Statistics> */}
       </>
     );
   }

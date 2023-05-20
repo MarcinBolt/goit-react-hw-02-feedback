@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+}
+.listItemParagraph {
+  display: flex;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.listItemSpan {
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+}

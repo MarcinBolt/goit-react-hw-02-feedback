@@ -1,0 +1,24 @@
+.feedbackButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.feedbackButton {
+  text-transform: capitalize;
+  font-size: 16px;
+  padding-inline: 10px;
+  padding-block: 5px;
+  margin: 3px;
+  background-color: inherit;
+  border: 1px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.feedbackButton:hover {
+  background-color: rgb(72, 243, 234);
+}
+.feedbackButton:active {
+  background-color: rgb(26, 89, 184);
+}
