@@ -8,23 +8,19 @@ export class Statistics extends Component {
     return (
       <>
         {!this.props.total ? (
-          <Notification />
+          <Notification message="There is no feedback" />
         ) : (
           <ul className={css.list}>
             <li className={css.listItem}>
               <p className={css.listItemParagraph}>
                 Good:
-                <span className={css.listItemSpan}>
-                  {this.props.good}
-                </span>
+                <span className={css.listItemSpan}>{this.props.good}</span>
               </p>
             </li>
             <li className={css.listItem}>
               <p className={css.listItemParagraph}>
                 Neutral:
-                <span className={css.listItemSpan}>
-                  {this.props.neutral}
-                </span>
+                <span className={css.listItemSpan}>{this.props.neutral}</span>
               </p>
             </li>
             <li className={css.listItem}>
