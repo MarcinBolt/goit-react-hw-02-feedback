@@ -10,26 +10,6 @@ export class App extends Component {
     bad: 0,
   };
 
-  // feedbackButtonHandle = (buttonValueTarget) => {
-  //   console.log(buttonValueTarget);
-  //   // let buttonValueTarget = e.target.value;
-  //   if (buttonValueTarget === 'good') {
-  //     return this.setState((state, props) => ({
-  //       good: state.good + props.step,
-  //     }));
-  //   }
-  //   if (buttonValueTarget === 'neutral') {
-  //     return this.setState((state, props) => ({
-  //       neutral: state.neutral + props.step,
-  //     }));
-  //   }
-  //   if (buttonValueTarget === 'bad') {
-  //     return this.setState((state, props) => ({
-  //       bad: state.bad + props.step,
-  //     }));
-  //   }
-  // };
-
   incrementTargetStateKey = stateKey =>
     this.setState(prevState => {
       return { [stateKey]: prevState[stateKey] + 1 };
@@ -41,7 +21,6 @@ export class App extends Component {
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
-    // this.total = good + neutral + bad;
     return good + neutral + bad;
   };
 
